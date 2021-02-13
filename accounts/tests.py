@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 class TestCustomUser(TestCase):
@@ -79,13 +80,23 @@ class TestUserAuthentication(TestCase):
             is_staff=False,
         )
 
-        self.c = Client()
-
     def test_status_code_after_login(self):
-        response = self.c.post('/login/', {'username': 'testuser', 'password': 'password'})
-        self.assertEqual(response.status_code, 200)
+        response = self.client.post('/accounts/login/', {'username': 'testuser', 'password': 'password'})
+        self.assertEqual(response.status_code, 302)
 
-    def test_template_after_login(self):
-        response = self.c.post('/login/', {'username': 'testuser', 'password': 'password'})
-        self.assertTemplateUsed(response, 'login.html')
+    def test_login_page_template(self):
+        response = self.client.get('/accounts/login/')
+        self.assertTemplateUsed(response, 'registration/login.html')
 
+    def test_signup_page_template(self):
+        response = self.client.get('/accounts/signup/')
+        self.assertTemplateUsed(response, 'registration/signup.html')
+
+    def test_home_page_template(self):
+        response = self.client.get('')
+        self.assertTemplateUsed(response, 'home.html')
+
+    def test_home_page_reversed_template(self):
+        response = self.client.get(reverse('home'))
+        self.assertTemplateUsed(response, 'home.html')
+        
