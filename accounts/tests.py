@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 
 
@@ -67,3 +67,25 @@ class TestCustomUser(TestCase):
         self.client.login(username='adminuser', password='passwort')
         response = self.client.get('/admin/')
         self.assertEqual(response.status_code, 302)
+
+
+class TestUserAuthentication(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username='testuser',
+            email='testuser@mail.com',
+            password='password',
+            goal='To be',
+            is_staff=False,
+        )
+
+        self.c = Client()
+
+    def test_status_code_after_login(self):
+        response = self.c.post('/login/', {'username': 'testuser', 'password': 'password'})
+        self.assertEqual(response.status_code, 200)
+
+    def test_template_after_login(self):
+        response = self.c.post('/login/', {'username': 'testuser', 'password': 'password'})
+        self.assertTemplateUsed(response, 'login.html')
+
