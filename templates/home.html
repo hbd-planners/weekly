@@ -2,11 +2,4 @@
 
 {% block content %}
 
-  {% if user.is_authenticated %}
-    <p>Hi, {{ user.username }}</p> 
-  {% else %}
-    <a href="{% url 'login' %}">Log In</a>
-    <a href="{% url 'signup' %}">Sign Up</a>
-  {% endif %}
-
 {% endblock content %}
