@@ -4,19 +4,16 @@
 
 {% block content %}
 
-<div class="container">
-
-  <div class="card mt-4">
-    <div class="card-body">
-      
      <h1>Log In</h1>
      <form method="post" accept-charset="utf-8">
        {% csrf_token %}
        {{ form|crispy }}
-       <input type="submit" value="Log In"/>
+       <input class='btn btn-primary mt-3' type="submit" value="Log In"/>
      </form>
-    </div>
-  </div>
-</div>
+
+     <div class='mt-4'>
+       <p><small><a class='link-primary text-decoration-none' href="{% url 'password_reset' %}">Forgot your password?</a></small></p>
+       <p><small><a class='link-primary text-decoration-none' href="{% url 'signup' %}">Don't have an account?</a></small></p>
+     </div>
 
 {% endblock content %}
