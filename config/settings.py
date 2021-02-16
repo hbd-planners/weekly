@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     # MY APPS
     'accounts',
+    'planner',
 ]
 
 MIDDLEWARE = [

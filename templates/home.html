@@ -2,4 +2,59 @@
 
 {% block content %}
 
+<table class="table table-bordered border-primary">
+  <thead>
+    <tr>
+      <th>
+        <button class='btn btn-secondary'>
+            <svg xlmns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+        </button>
+      </th>
+      <th class='align-middle justify-conent-center' colspan='5'>
+        {{ current_week }}        
+      </th>
+      <th class='float-right'>
+        <button class="btn btn-secondary" type="submit">
+            <svg xlmns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </button>
+      </th>
+    </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th scope="col">Pn</th>
+      <th scope="col">Wt</th>
+      <th scope="col">Śr</th>
+      <th scope="col">Cz</th>
+      <th scope="col">Pt</th>
+      <th scope="col">Sb</th>
+      <th scope="col">Nd</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <div>
+                1
+        </div>
+        <div>
+                2
+        </div>
+      </td>
+      <td>T2</td>
+      <td>T3</td>
+      <td>T4</td>
+      <td>T5</td>
+      <td>T6</td>
+      <td>T7</td>
+    </tr>
+  </tbody>
+</table>
+
+{{ cal|safe }}
+
 {% endblock content %}
